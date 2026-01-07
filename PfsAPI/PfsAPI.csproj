@@ -14,11 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\PfsShared\PfsShared.csproj" />
+    <Folder Include="Middleware\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Middleware\" />
+    <ProjectReference Include="..\PfsApplications\PfsApplications\PfsApplications.csproj" />
+    <ProjectReference Include="..\PfsShared\PfsShared\PfsShared.csproj" />
   </ItemGroup>
 
 </Project>

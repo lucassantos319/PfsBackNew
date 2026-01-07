@@ -16,6 +16,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(); 
 }
 
+//builder.Services.AddDbContext<RepositoryContext>(options =>
+//    options.UseNpgsql(
+//        builder.Configuration.GetConnectionString("DefaultConnection")
+//    )
+//);
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
