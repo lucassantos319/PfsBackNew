@@ -9,8 +9,6 @@ namespace PfsInfrastructure.Configurations
 {
     public static class TokenConfiguration
     {
-        private static readonly Guid _guid = new Guid();
-
         public static string Generate(User user)
         {
             var handler = new JwtSecurityTokenHandler();

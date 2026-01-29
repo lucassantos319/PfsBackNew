@@ -1,8 +1,8 @@
-﻿using PfsDomain.Interfaces.Applications;
+﻿using PfsDomain.Entities;
+using PfsDomain.Interfaces.Applications;
 using PfsDomain.Interfaces.Repositories;
 using PfsInfrastructure.Configurations;
 using PfsShared;
-using PfsShared.Errors;
 using PfsShared.ViewModels;
 
 namespace PfsApplications.Applications
@@ -15,30 +15,24 @@ namespace PfsApplications.Applications
             _repository = repository;
         }
 
-        public async Task<ResponseResult<Login.Response>> Login(Login.Request request)
+        public async Task<Result<User>> GetUserById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Result<LoginViewModel.Response>> Login(LoginViewModel.Request request)
         {
             var user = await _repository.GetLogin(request.Email, request.Password);
             if (user == null)
-                return ResponseResult<Login.Response>.Error(new[] {new ErrorResult
-                {
-                    Code = "USR_NOT_FOUND",
-                    Message = $"Usuario {request.Email} não encontrado."
-                }});
+                return Result<LoginViewModel.Response>.Error();
 
             if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
-            {
-                return ResponseResult<Login.Response>.Error(
-                    new[] { new ErrorResult
-                    {
-                        Code = "USR_INVALID_PASSWORD",
-                        Message = "Senha inválida."
-                    }});
-            }
+                return Result<LoginViewModel.Response>.Error("USR_INVALID_PASSWORD", "Senha inválida.");
 
             var token = TokenConfiguration.Generate(user);
-            return new ResponseResult<Login.Response>
+            return new Result<LoginViewModel.Response>
             {
-                Obj = new[] { new Login.Response { AccessToken = token }},
+                Obj = new[] { new LoginViewModel.Response { AccessToken = token }},
                 Success = true
             };
         }

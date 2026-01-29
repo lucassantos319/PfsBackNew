@@ -1,10 +1,12 @@
-﻿using PfsShared;
+﻿using PfsDomain.Entities;
+using PfsShared;
 using PfsShared.ViewModels;
 
 namespace PfsDomain.Interfaces.Applications
 {
     public interface IUsersApp
     {
-        Task<ResponseResult<Login.Response>> Login(Login.Request request);
+        Task<Result<LoginViewModel.Response>> Login(LoginViewModel.Request request);
+        Task<Result<User>> GetUserById(int id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PfsDomain.Entities;
 using PfsDomain.Interfaces.Repositories;
+using PfsShared.Enums;
 
 namespace PfsInfrastructure.Repositories
 {
@@ -15,7 +16,7 @@ namespace PfsInfrastructure.Repositories
         public async Task<User> GetLogin(string email, string password)
         {
             var users = await _context.Users
-                .FirstOrDefaultAsync(x => x.Email.Equals(email) && x.Status == PfsDomain.Enums.EStatus.Ativo);
+                .FirstOrDefaultAsync(x => x.Email.Equals(email) && x.Status == EStatus.Ativo);
 
             return users;
         }

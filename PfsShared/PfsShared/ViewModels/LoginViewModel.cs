@@ -1,7 +1,7 @@
 ﻿
 namespace PfsShared.ViewModels
 {
-    public class Login
+    public class LoginViewModel
     {
         public class Request
         {

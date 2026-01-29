@@ -1,5 +1,4 @@
-﻿
-using PfsDomain.Enums;
+﻿using PfsShared.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PfsDomain.Entities
