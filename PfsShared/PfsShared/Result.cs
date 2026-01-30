@@ -4,31 +4,34 @@ namespace PfsShared
 {
     public sealed class Result<T>
     {
-        private Result(T valor)
+        public static Result<T> Sucesss(T valor)
         {
+            return new Result<T>
+            {
+                Success = true,
+                Obj = new[] { valor }
+            };
         }
 
-        public static Result<T> Error(string code,string message)
+        public ErrorResult Errors { get; set; }
+        public IEnumerable<T> Obj { get; set; }
+        public bool Success { get; set; }
+    }
+
+    public sealed class Result
+    {
+        public static Result<T> Error<T>(string code, string message)
         {
             return new Result<T>
             {
                 Success = false,
-                Errors = new()
+                Errors = new ErrorResult
                 {
                     Code = code,
                     Message = message
                 }
             };
         }
-
-        public static Result<T> Sucesss()
-        {
-
-        }
-
-        public ErrorResult Errors { get; set; }
-        public IEnumerable<T> Obj { get; set; }
-        public bool Success { get; set; }
     }
 
     public class ErrorResult

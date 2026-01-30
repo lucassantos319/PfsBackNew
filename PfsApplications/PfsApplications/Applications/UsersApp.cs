@@ -3,6 +3,7 @@ using PfsDomain.Interfaces.Applications;
 using PfsDomain.Interfaces.Repositories;
 using PfsInfrastructure.Configurations;
 using PfsShared;
+using PfsShared.Errors;
 using PfsShared.ViewModels;
 
 namespace PfsApplications.Applications
@@ -24,17 +25,13 @@ namespace PfsApplications.Applications
         {
             var user = await _repository.GetLogin(request.Email, request.Password);
             if (user == null)
-                return Result<LoginViewModel.Response>.Error();
+                return Result.Error<LoginViewModel.Response>(CodigosErros.USR_NOT_FOUND,MensagensErros.USR_NOT_FOUND);
 
             if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
-                return Result<LoginViewModel.Response>.Error("USR_INVALID_PASSWORD", "Senha inválida.");
+                return Result.Error<LoginViewModel.Response>(CodigosErros.USR_INVALID_PASSWORD,MensagensErros.USR_INVALID_PASSWORD);
 
             var token = TokenConfiguration.Generate(user);
-            return new Result<LoginViewModel.Response>
-            {
-                Obj = new[] { new LoginViewModel.Response { AccessToken = token }},
-                Success = true
-            };
+            return Result<LoginViewModel.Response>.Sucesss(new LoginViewModel.Response { AccessToken = token });
         }
     }
 }

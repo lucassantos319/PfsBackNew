@@ -22,7 +22,7 @@ namespace PfsShared.Errors {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class CodigosErros {
+    public class CodigosErros {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace PfsShared.Errors {
         ///   Retorna a instância de ResourceManager armazenada em cache usada por essa classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PfsShared.Errors.CodigosErros", typeof(CodigosErros).Assembly);
@@ -51,7 +51,7 @@ namespace PfsShared.Errors {
         ///   pesquisas de recursos que usam essa classe de recurso de tipo de alta segurança.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,18 @@ namespace PfsShared.Errors {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a USR_INVALID_PASSWORD.
+        /// </summary>
+        public static string USR_INVALID_PASSWORD {
+            get {
+                return ResourceManager.GetString("USR_INVALID_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a USR_NOT_FOUND.
         /// </summary>
-        internal static string USR_NOT_FOUND {
+        public static string USR_NOT_FOUND {
             get {
                 return ResourceManager.GetString("USR_NOT_FOUND", resourceCulture);
             }

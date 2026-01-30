@@ -21,11 +21,11 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Errors\CodigosErros.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CodigosErros.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Errors\MensagensErros.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MensagensErros.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
