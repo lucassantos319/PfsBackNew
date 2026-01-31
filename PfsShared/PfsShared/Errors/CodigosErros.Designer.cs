@@ -61,6 +61,15 @@ namespace PfsShared.Errors {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a SYS_EXCEPTION.
+        /// </summary>
+        public static string SYS_EXCEPTION {
+            get {
+                return ResourceManager.GetString("SYS_EXCEPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a USR_INVALID_PASSWORD.
         /// </summary>
         public static string USR_INVALID_PASSWORD {

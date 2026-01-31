@@ -1,42 +1,63 @@
 ﻿using PfsShared.Errors;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PfsShared
 {
     public sealed class Result<T>
     {
-        public static Result<T> Sucesss(T valor)
+        private Result(T valor)
         {
-            return new Result<T>
-            {
-                Success = true,
-                Obj = new[] { valor }
-            };
+            Valor = valor;
         }
 
-        public ErrorResult Errors { get; set; }
-        public IEnumerable<T> Obj { get; set; }
-        public bool Success { get; set; }
+        private Result(Error erro)
+        {
+            Erro = erro;
+        }
+
+        public T Valor { get; private set; }
+        public Error Erro { get; }
+        public bool PossuiErro => Erro != null;
+
+        public static implicit operator Result<T>(T valor) => new(valor);
+        public static implicit operator Result<T>(Error erro) => new(erro);
+
     }
 
     public sealed class Result
     {
-        public static Result<T> Error<T>(string code, string message)
+        public static readonly Result Sucesso = new();
+
+        private Result()
+        { }
+
+        public Result(Error erro)
         {
-            return new Result<T>
-            {
-                Success = false,
-                Errors = new ErrorResult
-                {
-                    Code = code,
-                    Message = message
-                }
-            };
+            Erro = erro;
         }
+
+        public Error Erro { get; }
+
+        public bool PossuiErro => Erro != null;
+
+        public static implicit operator Result(Error erro) => new(erro);
     }
 
-    public class ErrorResult
+    public class Error 
     {
-        public string Message { get; set; }
+        public Error(string code, string message) 
+        {
+            Code = code;
+            Message = message;
+        }
+
         public string Code { get; set; }
+        public string Message { get; set; }
+
+        public static Error Excecao(Exception ex) =>
+          new(CodigosErros.SYS_EXCEPTION, ex.Message);
+
+        public static Error Validacao(string code,string message) => new(code,message);
+
     }
 }

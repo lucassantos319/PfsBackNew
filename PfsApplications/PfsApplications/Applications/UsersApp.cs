@@ -25,13 +25,13 @@ namespace PfsApplications.Applications
         {
             var user = await _repository.GetLogin(request.Email, request.Password);
             if (user == null)
-                return Result.Error<LoginViewModel.Response>(CodigosErros.USR_NOT_FOUND,MensagensErros.USR_NOT_FOUND);
+                return Error.Validacao(CodigosErros.USR_NOT_FOUND,MensagensErros.USR_NOT_FOUND);
 
             if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
-                return Result.Error<LoginViewModel.Response>(CodigosErros.USR_INVALID_PASSWORD,MensagensErros.USR_INVALID_PASSWORD);
+                return Error.Validacao(CodigosErros.USR_INVALID_PASSWORD,MensagensErros.USR_INVALID_PASSWORD);
 
             var token = TokenConfiguration.Generate(user);
-            return Result<LoginViewModel.Response>.Sucesss(new LoginViewModel.Response { AccessToken = token });
+            return Result.Sucesso;
         }
     }
 }
