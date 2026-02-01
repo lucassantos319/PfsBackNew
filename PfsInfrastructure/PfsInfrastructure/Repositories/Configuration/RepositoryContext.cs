@@ -2,7 +2,7 @@
 using PfsDomain.Entities;
 using PfsInfrastructure.Configurations;
 
-namespace PfsInfrastructure.Repositories
+namespace PfsInfrastructure.Repositories.Configuration
 {
     public class RepositoryContext : DbContext
     {

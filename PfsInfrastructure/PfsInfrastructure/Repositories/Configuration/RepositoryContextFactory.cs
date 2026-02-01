@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace PfsInfrastructure.Repositories
+namespace PfsInfrastructure.Repositories.Configuration
 {
     public class RepositoryContextFactory
         : IDesignTimeDbContextFactory<RepositoryContext>

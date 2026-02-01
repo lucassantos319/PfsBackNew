@@ -10,6 +10,9 @@ namespace PfsInfrastructure.Configurations
         {
             CreateMap<UserViewModel, User>()
                 .ReverseMap();
+
+            CreateMap<UserViewModel.Create.Request, User>()
+                .ReverseMap();
         }
     }
 }

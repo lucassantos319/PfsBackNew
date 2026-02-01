@@ -8,5 +8,7 @@ namespace PfsDomain.Interfaces.Applications
     {
         Task<Result<LoginViewModel.Response>> Login(LoginViewModel.Request request);
         Task<Result<User>> GetUserById(int id);
+        Task<Result<User>> Create(UserViewModel.Create.Request request); 
+        
     }
 }

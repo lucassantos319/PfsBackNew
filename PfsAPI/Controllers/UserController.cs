@@ -31,5 +31,13 @@ namespace PfsAPI.Controllers
             var user = await _application.GetUserById(id);
             return Ok(user);
         }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> Create([FromBody] UserViewModel.Create.Request user)
+        {
+            var createUser = await _application.Create(user);
+            return CreatedAtAction(nameof(Create), new { id = createUser.Valor.Id }, createUser.Valor);
+        }
     }
 }

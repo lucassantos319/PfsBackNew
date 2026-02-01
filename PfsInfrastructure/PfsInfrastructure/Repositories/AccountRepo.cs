@@ -1,4 +1,5 @@
 ﻿using PfsDomain.Interfaces.Repositories;
+using PfsInfrastructure.Repositories.Configuration;
 
 namespace PfsInfrastructure.Repositories
 {
