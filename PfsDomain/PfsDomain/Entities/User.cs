@@ -28,5 +28,6 @@ namespace PfsDomain.Entities
         public virtual Account Account { get; set; }
         public virtual IEnumerable<PainelUsers> PainelUsers { get; set; }
         public virtual IEnumerable<Transaction> Transactions { get; set; }
+        public ESignature Signature { get; set; }
     }
 }
