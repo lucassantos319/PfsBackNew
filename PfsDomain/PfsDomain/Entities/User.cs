@@ -16,6 +16,17 @@ namespace PfsDomain.Entities
             };
         }
 
+        public bool SignatureValid(int painelUserCount)
+        {
+            return Signature switch
+            {
+                ESignature.FREE => painelUserCount <= 3 ? true : false,
+                ESignature.PROFILE_1 => painelUserCount >= 3 && painelUserCount <= 10 ? true : false,
+                ESignature.PROFILE_2 => true,
+                _ => false  
+            };
+        }
+
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

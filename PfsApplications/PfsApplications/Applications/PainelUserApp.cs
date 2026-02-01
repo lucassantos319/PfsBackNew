@@ -36,11 +36,17 @@ namespace PfsApplications.Applications
         public async Task<Result<User>> ValidatePainelUser(User user)
         {
             var existedUserPainel = await _repository.GetByUserId(user.Id);
-            if (existedUserPainel != null)
+            if (existedUserPainel != null && existedUserPainel.Count() > 0)
             {
-                user.
+                var userSignatureValid = user.SignatureValid(existedUserPainel.Count());
+                if (userSignatureValid)
+                {
+                    var createdPainelUser = await Create(new PainelUsers { });
+                }
+
             }
 
+            return user;
         }
     }
 }
