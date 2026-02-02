@@ -5,7 +5,7 @@ using PfsShared.ViewModels;
 
 namespace PfsAPI.Controllers
 {
-    [Route("user")]
+    [Route("api/v1/user")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -13,15 +13,6 @@ namespace PfsAPI.Controllers
         public UserController(IUsersApp application) 
         {
             _application = application;
-        }
-
-        [HttpPost]
-        [ProducesResponseType<LoginViewModel.Response>(StatusCodes.Status200OK)]
-        [Route("auth/token")]
-        public async Task<IActionResult> Login([FromBody] LoginViewModel.Request login)
-        {
-            var token = await _application.Login(login);
-            return Ok(token);
         }
 
         [HttpGet("{id}")]
@@ -34,10 +25,18 @@ namespace PfsAPI.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> Create([FromBody] UserViewModel.Create.Request user)
+        public async Task<IActionResult> Create([FromBody] UserViewModel.Create.UserRequest user)
         {
             var createUser = await _application.Create(user);
             return CreatedAtAction(nameof(Create), new { id = createUser.Valor.Id }, createUser.Valor);
+        }
+
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Update([FromBody] UserViewModel user)
+        {
+            var updateUser = await _application.Update(user);
+            return Ok();
         }
     }
 }

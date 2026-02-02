@@ -6,6 +6,7 @@ namespace PfsDomain.Entities
     [Table("Painels", Schema = "Management")]
     public class Painel : BaseEntity
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public double CurrentAmount { get; set; }
         public double CurrentDebitAmount { get; set; }

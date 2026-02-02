@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="PAINEL_USER_INVALID" xml:space="preserve">
+    <value>PAINEL_USER_INVALID</value>
+  </data>
   <data name="SYS_EXCEPTION" xml:space="preserve">
     <value>SYS_EXCEPTION</value>
+  </data>
+  <data name="USER_SIGNATURE" xml:space="preserve">
+    <value>USER_SIGNATURE</value>
   </data>
   <data name="USR_INVALID_PASSWORD" xml:space="preserve">
     <value>USR_INVALID_PASSWORD</value>

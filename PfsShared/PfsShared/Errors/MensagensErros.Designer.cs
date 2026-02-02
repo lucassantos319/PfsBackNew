@@ -61,6 +61,24 @@ namespace PfsShared.Errors {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Painel User é obrigatório.
+        /// </summary>
+        public static string PAINEL_USER_INVALID {
+            get {
+                return ResourceManager.GetString("PAINEL_USER_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Usuário não possui plano necessário.
+        /// </summary>
+        public static string USER_SIGNATURE {
+            get {
+                return ResourceManager.GetString("USER_SIGNATURE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Senha é inválida.
         /// </summary>
         public static string USR_INVALID_PASSWORD {

@@ -22,4 +22,9 @@
     <ProjectReference Include="..\..\PfsDomain\PfsDomain\PfsDomain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configurations\NovaPasta\" />
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

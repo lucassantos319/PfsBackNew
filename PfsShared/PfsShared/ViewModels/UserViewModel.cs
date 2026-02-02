@@ -9,12 +9,10 @@ namespace PfsShared.ViewModels
         public string RefreshToken { get; set; }
         public EStatus Status { get; set; }
         public AccountViewModel Account { get; set; }
-        //public virtual IEnumerable<PainelUsers> PainelUsers { get; set; }
-        public virtual IEnumerable<Transaction> Transactions { get; set; }
  
         public class Create
         {
-            public class Request : UserBaseViewModel
+            public class UserRequest : UserBaseViewModel
             { 
                 public string GoogleId { get; set; }
                 public string PictureUrl { get; set; }
@@ -33,7 +31,7 @@ namespace PfsShared.ViewModels
 
     public class PainelUserViewModel
     {
-        public int PainelId { get; set; }
+        public Guid PainelId { get; set; }
         public ERole Role { get; set; }
     }
 }

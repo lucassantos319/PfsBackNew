@@ -6,6 +6,7 @@ namespace PfsDomain.Entities
     [Table("PainelUsers", Schema = "Management")]
     public class PainelUsers : BaseEntity
     {
+        public int Id { get; set; }
         public Guid PainelId { get; set; }
         public int UserId { get; set; }
         public ERole Role { get; set; }

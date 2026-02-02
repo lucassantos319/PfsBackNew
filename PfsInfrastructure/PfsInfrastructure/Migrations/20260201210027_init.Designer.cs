@@ -12,8 +12,8 @@ using PfsInfrastructure.Repositories.Configuration;
 namespace PfsInfrastructure.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20260107163632_Init")]
-    partial class Init
+    [Migration("20260201210027_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,8 +50,8 @@ namespace PfsInfrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("PainelId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("PainelId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -250,11 +250,9 @@ namespace PfsInfrastructure.Migrations
 
             modelBuilder.Entity("PfsDomain.Entities.Painel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("timestamp with time zone");
@@ -304,8 +302,8 @@ namespace PfsInfrastructure.Migrations
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("PainelId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("PainelId")
+                        .HasColumnType("uuid");
 
                     b.Property<int>("Role")
                         .HasColumnType("integer");
@@ -352,8 +350,8 @@ namespace PfsInfrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("PainelId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("PainelId")
+                        .HasColumnType("uuid");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");
@@ -400,6 +398,10 @@ namespace PfsInfrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("GoogleId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("text");
@@ -408,9 +410,16 @@ namespace PfsInfrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("PictureUrl")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("RefreshToken")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Signature")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");

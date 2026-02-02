@@ -24,7 +24,7 @@ namespace PfsApplications.Applications
             _painelUsersApp = painelUserApp;
         }
 
-        public async Task<Result<User>> Create(UserViewModel.Create.Request request)
+        public async Task<Result<User>> Create(UserViewModel.Create.UserRequest request)
         {
             var newUser = _mapper.Map<User>(request);
             var validUser = await ValidateUser(newUser);
@@ -33,6 +33,8 @@ namespace PfsApplications.Applications
                 return validUser.Erro;
 
             var user = await _repository.Create(validUser.Valor);
+            var painelUser = await _painelUsersApp.Create(user);
+
             return user;
         }
 
@@ -42,12 +44,14 @@ namespace PfsApplications.Applications
             if (existingUser != null)
             {
                 var painelUserValidation = await _painelUsersApp.ValidatePainelUser(existingUser);
-                //if (painelUserValidation.PossuiErro)
+                if (painelUserValidation.PossuiErro)
+                    return painelUserValidation.Erro;
+
+                return existingUser;
             }
 
             var validUser = User.NewValidUser(newUser);
             return validUser;
-
         }
 
         public async Task<Result<User>> GetUserById(int id)
@@ -59,7 +63,7 @@ namespace PfsApplications.Applications
             return user;
         }
 
-        public async Task<Result<LoginViewModel.Response>> Login(LoginViewModel.Request request)
+        public async Task<Result<LoginViewModel.LoginResponse>> Login(LoginViewModel.LoginRequest request)
         {
             var user = await _repository.GetByEmail(request.Email);
             if (user == null)
@@ -69,7 +73,12 @@ namespace PfsApplications.Applications
                 return Error.Validacao(CodigosErros.USR_INVALID_PASSWORD,MensagensErros.USR_INVALID_PASSWORD);
 
             var token = TokenConfiguration.Generate(user);
-            return new LoginViewModel.Response { AccessToken = token };
+            return new LoginViewModel.LoginResponse { AccessToken = token };
+        }
+
+        public Task<Result> Update(UserViewModel request)
+        {
+            throw new NotImplementedException();
         }
     }
 }

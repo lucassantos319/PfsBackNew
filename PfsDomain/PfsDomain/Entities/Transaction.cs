@@ -6,10 +6,11 @@ namespace PfsDomain.Entities
     [Table("Transactions", Schema = "Core")]
     public class Transaction : BaseEntity
     {
+        public int Id { get; set; }
         public string Description { get; set; }
         public double Amount { get; set; }
         public int CategoryId { get; set; }
-        public int PainelId { get; set; }
+        public Guid PainelId { get; set; }
         public int AccountId { get; set; }
         public int UserId { get; set; }
         public EStatus Status { get; set; }

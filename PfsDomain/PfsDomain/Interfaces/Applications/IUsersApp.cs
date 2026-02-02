@@ -6,9 +6,10 @@ namespace PfsDomain.Interfaces.Applications
 {
     public interface IUsersApp
     {
-        Task<Result<LoginViewModel.Response>> Login(LoginViewModel.Request request);
+        Task<Result<LoginViewModel.LoginResponse>> Login(LoginViewModel.LoginRequest request);
         Task<Result<User>> GetUserById(int id);
-        Task<Result<User>> Create(UserViewModel.Create.Request request); 
-        
+        Task<Result<User>> Create(UserViewModel.Create.UserRequest request); 
+        Task<Result> Update(UserViewModel request);
+
     }
 }

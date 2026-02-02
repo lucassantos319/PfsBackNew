@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace PfsInfrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -98,8 +98,7 @@ namespace PfsInfrastructure.Migrations
                 schema: "Management",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     CurrentAmount = table.Column<double>(type: "double precision", nullable: false),
                     CurrentDebitAmount = table.Column<double>(type: "double precision", nullable: false),
@@ -130,6 +129,9 @@ namespace PfsInfrastructure.Migrations
                     RefreshToken = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
                     Status = table.Column<int>(type: "integer", nullable: false),
+                    GoogleId = table.Column<string>(type: "text", nullable: false),
+                    PictureUrl = table.Column<string>(type: "text", nullable: false),
+                    Signature = table.Column<int>(type: "integer", nullable: false),
                     CreateAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdateAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -152,7 +154,7 @@ namespace PfsInfrastructure.Migrations
                     RefreshToken = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
                     CurrentAmount = table.Column<double>(type: "double precision", nullable: false),
-                    PainelId = table.Column<int>(type: "integer", nullable: false),
+                    PainelId = table.Column<Guid>(type: "uuid", nullable: false),
                     UserCreatedId = table.Column<int>(type: "integer", nullable: false),
                     Status = table.Column<int>(type: "integer", nullable: false),
                     CreateAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -191,7 +193,7 @@ namespace PfsInfrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    PainelId = table.Column<int>(type: "integer", nullable: false),
+                    PainelId = table.Column<Guid>(type: "uuid", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     Role = table.Column<int>(type: "integer", nullable: false),
                     Status = table.Column<int>(type: "integer", nullable: false),
@@ -259,7 +261,7 @@ namespace PfsInfrastructure.Migrations
                     Description = table.Column<string>(type: "text", nullable: false),
                     Amount = table.Column<double>(type: "double precision", nullable: false),
                     CategoryId = table.Column<int>(type: "integer", nullable: false),
-                    PainelId = table.Column<int>(type: "integer", nullable: false),
+                    PainelId = table.Column<Guid>(type: "uuid", nullable: false),
                     AccountId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     Status = table.Column<int>(type: "integer", nullable: false),

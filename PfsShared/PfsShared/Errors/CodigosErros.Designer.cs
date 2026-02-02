@@ -61,11 +61,29 @@ namespace PfsShared.Errors {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a PAINEL_USER_INVALID.
+        /// </summary>
+        public static string PAINEL_USER_INVALID {
+            get {
+                return ResourceManager.GetString("PAINEL_USER_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a SYS_EXCEPTION.
         /// </summary>
         public static string SYS_EXCEPTION {
             get {
                 return ResourceManager.GetString("SYS_EXCEPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a USER_SIGNATURE.
+        /// </summary>
+        public static string USER_SIGNATURE {
+            get {
+                return ResourceManager.GetString("USER_SIGNATURE", resourceCulture);
             }
         }
         

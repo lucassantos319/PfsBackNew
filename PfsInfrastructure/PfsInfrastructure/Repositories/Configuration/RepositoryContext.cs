@@ -10,7 +10,7 @@ namespace PfsInfrastructure.Repositories.Configuration
         {
         }
 
-        public DbSet<AccountRepo> Account { get; set; }
+        public DbSet<Account> Account { get; set; }
         public DbSet<AccountCreditCard> AccountCreditCard { get; set; }
         public DbSet<Banks> Banks { get; set; }
         public DbSet<Categories> Categories { get; set; }

@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using PfsApplications.Applications;
+using PfsDomain.Interfaces.Applications;
+using PfsDomain.Interfaces.Repositories;
 using PfsInfrastructure.Configurations;
+using PfsInfrastructure.Repositories;
+using PfsInfrastructure.Repositories.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +15,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureMapping();
+builder.Services.AddScoped<IUsersApp, UsersApp>();
+builder.Services.AddScoped<IPainelUserApp, PainelUserApp>();
+builder.Services.AddScoped<IUsersRepo, UsersRepo>();
+builder.Services.AddScoped<IPainelUserRepo, PainelUserRepo>();
+
+builder.Services.AddDbContext<RepositoryContext>(options =>
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("Host=localhost;Port=5432;Username=postgres;Database=pfs;Password=admin")
+    )
+);
 
 var app = builder.Build();
 
@@ -19,11 +35,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(); 
 }
 
-//builder.Services.AddDbContext<RepositoryContext>(options =>
-//    options.UseNpgsql(
-//        builder.Configuration.GetConnectionString("DefaultConnection")
-//    )
-//);
 
 app.UseHttpsRedirection();
 

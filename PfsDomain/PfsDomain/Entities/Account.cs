@@ -6,6 +6,7 @@ namespace PfsDomain.Entities
     [Table("Accounts",Schema = "Management")]
     public class Account : BaseEntity
     {
+        public int Id { get; set; }
         public int BankId { get; set; }
         public string Name { get; set; }
         public string Username { get; set; }
@@ -13,7 +14,7 @@ namespace PfsDomain.Entities
         public string RefreshToken { get; set; }
         public string Password { get; set; }
         public double CurrentAmount { get; set; }
-        public int PainelId { get; set; }
+        public Guid PainelId { get; set; }
         public int UserCreatedId { get; set; }
         public virtual User User { get; set; }
         public virtual Painel Painel { get; set; }

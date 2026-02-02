@@ -7,6 +7,7 @@ namespace PfsDomain.Entities
     [Table("Banks", Schema = "Management")]
     public class Banks : BaseEntity
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public EStatus Status { get; set; }
         public virtual List<Account> Accounts { get; set; }

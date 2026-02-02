@@ -6,6 +6,7 @@ namespace PfsDomain.Entities
     [Table("AccountCreditCard", Schema = "Core")]
     public class AccountCreditCard : BaseEntity
     {
+        public int Id { get; set; }
         public int AccountId { get; set; }
         public int CreditCardId { get; set; }   
         public EStatus Status { get; set; }

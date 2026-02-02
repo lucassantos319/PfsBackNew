@@ -12,7 +12,7 @@ namespace PfsInfrastructure.Repositories.Configuration
             var optionsBuilder = new DbContextOptionsBuilder<RepositoryContext>();
 
             optionsBuilder.UseNpgsql(
-                "host=localhost;port=5432;user=pfadmin;dbname=pfsdb;password=StrongPassword12");
+                "Host=localhost;Port=5432;Username=postgres;Database=pfs;Password=admin");
 
             return new RepositoryContext(optionsBuilder.Options);
         }
