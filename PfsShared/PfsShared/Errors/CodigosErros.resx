@@ -126,6 +126,9 @@
   <data name="USER_SIGNATURE" xml:space="preserve">
     <value>USER_SIGNATURE</value>
   </data>
+  <data name="USR_ALREADY_EXIST" xml:space="preserve">
+    <value>USR_ALREADY_EXIST</value>
+  </data>
   <data name="USR_INVALID_PASSWORD" xml:space="preserve">
     <value>USR_INVALID_PASSWORD</value>
   </data>

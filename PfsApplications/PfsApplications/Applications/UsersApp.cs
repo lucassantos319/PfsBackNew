@@ -35,7 +35,7 @@ namespace PfsApplications.Applications
                     return validUser.Erro;
 
                 var user = await _repository.Create(validUser.Valor);
-                var painelUser = await _painelUsersApp.Create(user);
+                var painelUser = await _painelUsersApp.Create(request.PainelRole,user.Id);
 
                 return user;
             }
@@ -49,13 +49,7 @@ namespace PfsApplications.Applications
         {
             var existingUser = await _repository.GetByEmail(newUser.Email);
             if (existingUser != null)
-            {
-                var painelUserValidation = await _painelUsersApp.ValidatePainelUser(existingUser);
-                if (painelUserValidation.PossuiErro)
-                    return painelUserValidation.Erro;
-
-                return existingUser;
-            }
+                return Error.Validacao(CodigosErros.USR_ALREADY_EXIST,MensagensErros.USR_ALREADY_EXIST);
 
             newUser.NewValidUser(); 
             return newUser;

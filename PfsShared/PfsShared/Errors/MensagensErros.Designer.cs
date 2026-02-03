@@ -79,6 +79,15 @@ namespace PfsShared.Errors {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Usuário já existente.
+        /// </summary>
+        public static string USR_ALREADY_EXIST {
+            get {
+                return ResourceManager.GetString("USR_ALREADY_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Senha é inválida.
         /// </summary>
         public static string USR_INVALID_PASSWORD {

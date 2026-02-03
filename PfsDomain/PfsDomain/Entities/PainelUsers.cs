@@ -6,6 +6,21 @@ namespace PfsDomain.Entities
     [Table("PainelUsers", Schema = "Management")]
     public class PainelUsers : BaseEntity
     {
+
+        public PainelUsers()
+        {
+        }
+
+        public PainelUsers(Guid painelId, int userId, ERole role)
+        {
+            PainelId = painelId;
+            UserId = userId;
+            Role = role;
+            Status = PfsShared.Enums.EStatus.Ativo;
+            CreateAt = DateTime.UtcNow;
+            UpdateAt = DateTime.UtcNow;
+        }
+
         public int Id { get; set; }
         public Guid PainelId { get; set; }
         public int UserId { get; set; }

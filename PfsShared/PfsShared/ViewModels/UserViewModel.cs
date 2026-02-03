@@ -17,7 +17,7 @@ namespace PfsShared.ViewModels
             {
                 public string? GoogleId { get; set; }
                 public string? PictureUrl { get; set; }
-                public PainelUserViewModel PainelRole { get; set; }
+                public PainelRoleViewModel PainelRole{ get; set; }
             }
         }
     }
@@ -30,7 +30,7 @@ namespace PfsShared.ViewModels
         public string Password { get; set; }    
     }
 
-    public class PainelUserViewModel
+    public class PainelRoleViewModel
     {
         public Guid PainelId { get; set; }
         public ERole Role { get; set; }

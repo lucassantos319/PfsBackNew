@@ -3,8 +3,8 @@ namespace PfsShared.Enums
 {
     public enum ESignature
     {
-        FREE = 0,
-        PROFILE_1 = 1,
-        PROFILE_2 = 2
+        FREE = 1,
+        PROFILE_1 = 2,
+        PROFILE_2 = 3
     }
 }

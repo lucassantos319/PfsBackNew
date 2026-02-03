@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PfsInfrastructure.Configurations.Mapper;
 
 namespace PfsInfrastructure.Configurations
 {

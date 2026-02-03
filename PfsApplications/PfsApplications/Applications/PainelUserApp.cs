@@ -3,6 +3,7 @@ using PfsDomain.Interfaces.Applications;
 using PfsDomain.Interfaces.Repositories;
 using PfsShared;
 using PfsShared.Errors;
+using PfsShared.ViewModels;
 
 namespace PfsApplications.Applications
 {
@@ -14,14 +15,10 @@ namespace PfsApplications.Applications
             _repository = repository;
         }
 
-        public async Task<Result<PainelUsers>> Create(User user)
+        public async Task<Result<PainelUsers>> Create(PainelRoleViewModel painel,int userId)
         {
-            var painelUser = user.PainelUsers.FirstOrDefault();
-            if (painelUser == null)
-                return Error.Validacao(CodigosErros.PAINEL_USER_INVALID, MensagensErros.PAINEL_USER_INVALID);
-
-            painelUser.UserId = user.Id;
-            var createdPainelUser = await _repository.Create(painelUser);
+            var newPainelUser = new PainelUsers(painel.PainelId,userId,painel.Role);
+            var createdPainelUser = await _repository.Create(newPainelUser);
             return createdPainelUser;
         }
 

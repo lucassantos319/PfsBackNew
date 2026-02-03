@@ -28,7 +28,10 @@ namespace PfsAPI.Controllers
         public async Task<IActionResult> Create([FromBody] UserViewModel.Create.UserRequest user)
         {
             var createUser = await _application.Create(user);
-            return CreatedAtAction(nameof(Create), new { id = createUser.Valor.Id }, createUser.Valor);
+            if (createUser.PossuiErro)
+                return BadRequest(createUser.Erro);
+
+            return CreatedAtAction(nameof(Create), new { id = createUser.Valor.Id });
         }
 
         [HttpPut]
