@@ -22,7 +22,7 @@ builder.Services.AddScoped<IPainelUserRepo, PainelUserRepo>();
 
 builder.Services.AddDbContext<RepositoryContext>(options =>
     options.UseNpgsql(
-        builder.Configuration.GetConnectionString("Host=localhost;Port=5432;Username=postgres;Database=pfs;Password=admin")
+        builder.Configuration.GetConnectionString("DefaultConnection")
     )
 );
 

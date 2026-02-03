@@ -7,13 +7,10 @@ namespace PfsDomain.Entities
     [Table("Users", Schema = "Management")]
     public class User : BaseEntity
     {
-        public static User NewValidUser(User user)
+        public void NewValidUser()
         {
-            return new User
-            {
-                Password = BCrypt.Net.BCrypt.HashPassword(user.Password),
-                Status = EStatus.Ativo  
-            };
+            Password = BCrypt.Net.BCrypt.HashPassword(Password);
+            Status = EStatus.Ativo;
         }
 
         public bool SignatureValid(int painelUserCount)
@@ -28,15 +25,15 @@ namespace PfsDomain.Entities
         }
 
         public int Id { get; set; }
-        public string Email { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string AccessToken { get; set; }
-        public string RefreshToken { get;set; }
-        public string Password { get; set; }
+        public string Email { get; set; } = string.Empty;
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string AccessToken { get; set; } = string.Empty;
+        public string RefreshToken { get;set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
         public EStatus Status { get; set; }
-        public string GoogleId { get; set; }
-        public string PictureUrl { get; set; }
+        public string GoogleId { get; set; } = string.Empty;
+        public string PictureUrl { get; set; } = string.Empty;
         public virtual Account Account { get; set; }
         public virtual IEnumerable<PainelUsers> PainelUsers { get; set; }
         public virtual IEnumerable<Transaction> Transactions { get; set; }

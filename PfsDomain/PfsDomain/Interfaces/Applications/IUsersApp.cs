@@ -4,7 +4,7 @@ using PfsShared.ViewModels;
 
 namespace PfsDomain.Interfaces.Applications
 {
-    public interface IUsersApp
+    public interface IUsersApp 
     {
         Task<Result<LoginViewModel.LoginResponse>> Login(LoginViewModel.LoginRequest request);
         Task<Result<User>> GetUserById(int id);

@@ -6,9 +6,9 @@ services:
     container_name: postgres-pfs
     restart: unless-stopped
     environment:
-      POSTGRES_USER: pfadmin
-      POSTGRES_PASSWORD: StrongPassword123
-      POSTGRES_DB: pfsdb
+      POSTGRES_USER: pfs
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: pfs
     ports:
       - "5432:5432"
     volumes:

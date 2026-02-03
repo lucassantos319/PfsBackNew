@@ -9,7 +9,7 @@ using PfsShared.ViewModels;
 
 namespace PfsApplications.Applications
 {
-    public class UsersApp : IUsersApp
+    public class UsersApp : ApplicationBase<User> ,IUsersApp
     {
         readonly IMapper _mapper;
         readonly IUsersRepo _repository;
@@ -26,19 +26,26 @@ namespace PfsApplications.Applications
 
         public async Task<Result<User>> Create(UserViewModel.Create.UserRequest request)
         {
-            var newUser = _mapper.Map<User>(request);
-            var validUser = await ValidateUser(newUser);
+            try
+            {
+                var newUser = _mapper.Map<User>(request);
+                var validUser = await Validate(newUser);
 
-            if (validUser.PossuiErro)
-                return validUser.Erro;
+                if (validUser.PossuiErro)
+                    return validUser.Erro;
 
-            var user = await _repository.Create(validUser.Valor);
-            var painelUser = await _painelUsersApp.Create(user);
+                var user = await _repository.Create(validUser.Valor);
+                var painelUser = await _painelUsersApp.Create(user);
 
-            return user;
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
-        private async Task<Result<User>> ValidateUser(User newUser)
+        protected override async Task<Result<User>> Validate(User newUser)
         {
             var existingUser = await _repository.GetByEmail(newUser.Email);
             if (existingUser != null)
@@ -50,8 +57,8 @@ namespace PfsApplications.Applications
                 return existingUser;
             }
 
-            var validUser = User.NewValidUser(newUser);
-            return validUser;
+            newUser.NewValidUser(); 
+            return newUser;
         }
 
         public async Task<Result<User>> GetUserById(int id)
