@@ -25,6 +25,7 @@ namespace PfsDomain.Entities
         public Guid PainelId { get; set; }
         public int UserId { get; set; }
         public ERole Role { get; set; }
+        public bool MainUser { get; set; }
         public EStatus Status { get; set; }
         public virtual Painel Painel { get; set; }
         public virtual User User { get; set; }

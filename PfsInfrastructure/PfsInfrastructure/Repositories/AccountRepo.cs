@@ -1,4 +1,6 @@
-﻿using PfsDomain.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using PfsDomain.Entities;
+using PfsDomain.Interfaces.Repositories;
 using PfsInfrastructure.Repositories.Configuration;
 
 namespace PfsInfrastructure.Repositories
@@ -9,6 +11,24 @@ namespace PfsInfrastructure.Repositories
         public AccountRepo(RepositoryContext context) 
         {
             _context = context;
+        }
+
+        public async Task<Account> Create(Account account)
+        {
+            await _context.Account.AddAsync(account);
+            await _context.SaveChangesAsync();
+
+            return account;
+        }
+
+        public async Task<IEnumerable<Account>> GetByPainelId(Guid painelId)
+        {
+            var accounts = await _context
+                .Account
+                .Where(x => x.PainelId == painelId)
+                .ToListAsync();
+
+            return accounts;
         }
     }
 }

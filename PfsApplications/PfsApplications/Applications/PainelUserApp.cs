@@ -22,10 +22,12 @@ namespace PfsApplications.Applications
             return createdPainelUser;
         }
 
-        public Task<Result<IEnumerable<PainelUsers>>> GetByPainelId(int painelId)
+        public async Task<Result<int>> GetUserIdByPainelId(Guid painelId)
         {
-            throw new NotImplementedException();
+            var userId = await _repository.GetUserIdByPainelId(painelId);
+            return userId;
         }
+
 
         public Task<Result<IEnumerable<PainelUsers>>> GetByUserId(int userId)
         {
@@ -59,6 +61,11 @@ namespace PfsApplications.Applications
             }
 
             return true;
+        }
+
+        public Task<Result<IEnumerable<PainelUsers>>> GetByPainelId(Guid painelId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

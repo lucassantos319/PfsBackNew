@@ -61,6 +61,15 @@ namespace PfsShared.Errors {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Não encontrado painel ativo.
+        /// </summary>
+        public static string PAINEL_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("PAINEL_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Painel User é obrigatório.
         /// </summary>
         public static string PAINEL_USER_INVALID {

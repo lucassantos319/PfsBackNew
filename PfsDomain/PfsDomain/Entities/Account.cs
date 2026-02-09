@@ -22,5 +22,7 @@ namespace PfsDomain.Entities
         public virtual IEnumerable<AccountCreditCard> AccountCreditCards { get; set; }
         public virtual IEnumerable<Transaction> Transactions { get; set; }
         public EStatus Status { get; set; }
+
+        
     }
 }

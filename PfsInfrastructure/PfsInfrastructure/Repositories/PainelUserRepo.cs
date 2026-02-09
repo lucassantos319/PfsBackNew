@@ -40,6 +40,14 @@ namespace PfsInfrastructure.Repositories
             return painelUsers;
         }
 
+        public async Task<int> GetUserIdByPainelId(Guid painelId)
+        {
+            var painelUserId = await _context.PainelUsers
+                .FirstOrDefaultAsync(x => x.MainUser && x.PainelId == painelId);
+
+            return painelUserId.UserId;
+        }
+
         public async Task<bool> Update(PainelUsers painelUser)
         {
             _context.PainelUsers.Update(painelUser);

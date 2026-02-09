@@ -8,6 +8,6 @@ namespace PfsDomain.Interfaces.Repositories
         Task<PainelUsers> Create(PainelUsers painelUser);
         Task<bool> Update(PainelUsers painelUser);
         Task<IEnumerable<PainelUsers>> GetByUserId(int userId);
-        Task<IEnumerable<PainelUsers>> GetByPainelId(Guid painelId);
+        Task<int> GetUserIdByPainelId(Guid painelId);
     }
 }

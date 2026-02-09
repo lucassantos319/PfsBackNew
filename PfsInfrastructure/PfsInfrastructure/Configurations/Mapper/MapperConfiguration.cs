@@ -22,6 +22,9 @@ namespace PfsInfrastructure.Configurations.Mapper
                 .ForMember(d => d.FirstName, opt => opt.NullSubstitute(string.Empty))
                 .ForMember(d => d.FirstName, opt => opt.NullSubstitute(string.Empty))
                 .ReverseMap();
+
+            CreateMap<AccountViewModel,Account>()
+                .ReverseMap();
         }
     }
 }
