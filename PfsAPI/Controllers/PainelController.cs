@@ -28,5 +28,35 @@ namespace PfsAPI.Controllers
             //var addUserPainel = await _painelApp.Create();
             return Ok();
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            var painel = await _painelApp.GetById(id);
+            if (painel.PossuiErro)
+                return BadRequest(painel);
+
+            return Ok(painel);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] CreditCardViewModel creditCardViewModel)
+        {
+            var painel = await _painelApp.Update(creditCardViewModel);
+            if (painel.PossuiErro)
+                return BadRequest(painel);
+
+            return Ok(painel);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById([FromRoute] int id)
+        {
+            var painelCreditCard = await _painelApp.DeleteById(id);
+            if (painelCreditCard.PossuiErro)
+                return BadRequest(painelCreditCard);
+
+            return Ok(painelCreditCard);
+        }
     }
 }

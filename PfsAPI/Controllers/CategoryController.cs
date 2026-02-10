@@ -34,6 +34,16 @@ namespace PfsAPI.Controllers
             return Ok(category);
         }
 
+        [HttpGet("painel/{id}")]
+        public async Task<IActionResult> GetByPainelId(Guid painelId)
+        {
+            var categories = await _categoriesApp.GetByPainelId(painelId);
+            if ( categories.PossuiErro)
+                return BadRequest(categories);
+
+            return Ok(categories);
+        }
+
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] CategoriesViewModel categoriesViewModel)
         {
