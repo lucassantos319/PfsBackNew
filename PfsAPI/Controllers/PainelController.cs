@@ -20,5 +20,13 @@ namespace PfsAPI.Controllers
             var createPainel = await _painelApp.Create(painel);
             return CreatedAtAction(nameof(Create), new { id = createPainel.Valor.Id }, createPainel.Valor);
         }
+
+        [HttpPost]
+        [Route("{id}/add/user/")]
+        public async Task<IActionResult> AddUserPainel([FromRoute] Guid id, [FromBody] PainelUserViewModel painelUser)
+        {
+            //var addUserPainel = await _painelApp.Create();
+            return Ok();
+        }
     }
 }

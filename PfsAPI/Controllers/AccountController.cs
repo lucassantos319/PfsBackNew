@@ -7,7 +7,7 @@ using PfsShared.ViewModels;
 namespace PfsAPI.Controllers
 {
     [ApiController]
-    [Route("v1/account")]
+    [Route("api/v1/account")]
     public class AccountController : ControllerBase
     {
         readonly IAccountApp _accountApp;
@@ -22,6 +22,26 @@ namespace PfsAPI.Controllers
         {
             var result = await _accountApp.Create(account);
             if (result.PossuiErro)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            var result = await _accountApp.GetById(id);
+            if (result.PossuiErro)
+                return BadRequest(result);
+            
+            return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById([FromRoute] int id)
+        {
+            var result = await _accountApp.DeleteById(id);
+            if ( result.PossuiErro )
                 return BadRequest(result);
 
             return Ok(result);

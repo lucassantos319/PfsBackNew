@@ -14,4 +14,10 @@ namespace PfsShared.ViewModels
         public EStatus Status { get; set; }
         public double PercentualMonthComparation { get; set; }
     }
+
+    public class PainelUserViewModel
+    {
+        public int UserId { get; set; }
+        public ERole Role { get; set; }
+    }
 }

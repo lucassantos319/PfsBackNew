@@ -30,9 +30,9 @@ namespace PfsApplications.Applications
         public async Task<Result<Account>> Create(AccountViewModel accountViewModel)
         {
             var account = _mapper.Map<Account>(accountViewModel);
-            var validAccount = await Validate(account);  
+            var validAccount = await Validate(account);
 
-            if ( validAccount.PossuiErro )
+            if (validAccount.PossuiErro)
                 return validAccount.Erro;
 
             var createdAccount = await _repository.Create(account);
@@ -50,9 +50,9 @@ namespace PfsApplications.Applications
             var user = await _userApp.GetUserById(userId.Valor);
             var accounts = await _repository.GetByPainelId(account.PainelId);
 
-            var signatureValid = SignatureValidate(accounts.Count(),user.Valor.Signature);
-            if ( !signatureValid )
-                return Error.Validacao(CodigosErros.USER_SIGNATURE, MensagensErros.USER_SIGNATURE); 
+            var signatureValid = SignatureValidate(accounts.Count(), user.Valor.Signature);
+            if (!signatureValid)
+                return Error.Validacao(CodigosErros.USER_SIGNATURE, MensagensErros.USER_SIGNATURE);
 
             return account;
         }
@@ -66,6 +66,37 @@ namespace PfsApplications.Applications
                 ESignature.PROFILE_2 => true,
                 _ => false
             };
+        }
+
+        public async Task<Result<Account>> GetById(int id)
+        {
+            var account = await _repository.GetById(id);
+            if (account == null)
+                Error.Validacao(CodigosErros.ACCOUNT_NOT_FOUND, MensagensErros.ACCOUNT_NOT_FOUND);
+
+            return account;
+        }
+
+        public async Task<Result<bool>> DeleteById(int id)
+        {
+            var account = await GetById(id);
+            if (account.PossuiErro)
+                return account.Erro;
+
+            account.Valor.Status = EStatus.Inativo;
+            await _repository.Update(account.Valor);
+
+            return true;
+        }
+
+        public async Task<Result<bool>> Update(AccountViewModel accountViewModel)
+        {
+            var account = _mapper.Map<Account>(accountViewModel);
+            if (account == null || account.Id <= 0)
+                return Error.Validacao(CodigosErros.ACCOUNT_NOT_FOUND, MensagensErros.ACCOUNT_NOT_FOUND);
+
+            await _repository.Update(account);
+            return true;
         }
     }
 }

@@ -30,5 +30,21 @@ namespace PfsInfrastructure.Repositories
 
             return accounts;
         }
+
+        public async Task<Account> GetById(int id)
+        {
+            var accounts = await _context
+                .Account
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            return accounts;
+        }
+
+        public async Task Update(Account account)
+        {
+            _context.Account.Update(account);
+            await _context.SaveChangesAsync();
+        }
+
     }
 }
