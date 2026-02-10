@@ -40,9 +40,9 @@ namespace PfsAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] CreditCardViewModel creditCardViewModel)
+        public async Task<IActionResult> Update([FromBody] PainelViewModel painelViewModel)
         {
-            var painel = await _painelApp.Update(creditCardViewModel);
+            var painel = await _painelApp.Update(painelViewModel);
             if (painel.PossuiErro)
                 return BadRequest(painel);
 
