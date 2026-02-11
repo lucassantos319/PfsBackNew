@@ -4,7 +4,7 @@ using PfsDomain.Interfaces.Applications;
 using PfsShared;
 using PfsShared.ViewModels;
 
-namespace PfsAPI.Controllers
+namespace PfsAPI.Controllers.v1
 {
     [ApiController]
     [Route("api/v1/account")]
@@ -45,6 +45,26 @@ namespace PfsAPI.Controllers
                 return BadRequest(result);
 
             return Ok(result);
+        }
+
+        [HttpGet("painel/{id}")]
+        public async Task<IActionResult> GetByPainelId(Guid painelId)
+        {
+            var account = await _accountApp.GetByPainelId(painelId);
+            if (account.PossuiErro)
+                return BadRequest(account);
+
+            return Ok(account);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] AccountViewModel accountViewModel)
+        {
+            var account = await _accountApp.Update(accountViewModel);
+            if (account.PossuiErro)
+                return BadRequest(account);
+
+            return Ok(account);
         }
     }
 }

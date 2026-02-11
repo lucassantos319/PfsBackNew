@@ -2,7 +2,7 @@
 using PfsDomain.Interfaces.Applications;
 using PfsShared.ViewModels;
 
-namespace PfsAPI.Controllers
+namespace PfsAPI.Controllers.v1
 {
     [ApiController]
     [Route("api/v1/category")]

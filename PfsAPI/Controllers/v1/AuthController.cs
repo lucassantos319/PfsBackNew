@@ -3,7 +3,7 @@ using PfsDomain.Interfaces.Applications;
 using PfsShared.ViewModels;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace PfsAPI.Controllers
+namespace PfsAPI.Controllers.v1
 {
     [ApiController]
     [Route("api/v1/auth")]

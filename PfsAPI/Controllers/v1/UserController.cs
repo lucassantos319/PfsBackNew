@@ -3,7 +3,7 @@ using PfsDomain.Entities;
 using PfsDomain.Interfaces.Applications;
 using PfsShared.ViewModels;
 
-namespace PfsAPI.Controllers
+namespace PfsAPI.Controllers.v1
 {
     [Route("api/v1/user")]
     [ApiController]
@@ -17,9 +17,9 @@ namespace PfsAPI.Controllers
 
         [HttpGet("{id}")]
         [ProducesResponseType<User>(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetUserById([FromQuery] int id)
+        public async Task<IActionResult> GetById([FromQuery] int id)
         {
-            var user = await _application.GetUserById(id);
+            var user = await _application.GetById(id);
             return Ok(user);
         }
 
@@ -40,6 +40,16 @@ namespace PfsAPI.Controllers
         {
             var updateUser = await _application.Update(user);
             return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById([FromRoute] int id)
+        {
+            var deleteTransaction = await _application.DeleteById(id);
+            if (deleteTransaction.PossuiErro)
+                return BadRequest(deleteTransaction);
+
+            return Ok(deleteTransaction);
         }
     }
 }

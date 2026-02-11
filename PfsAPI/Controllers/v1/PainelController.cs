@@ -2,7 +2,7 @@
 using PfsDomain.Interfaces.Applications;
 using PfsShared.ViewModels;
 
-namespace PfsAPI.Controllers
+namespace PfsAPI.Controllers.v1
 {
     [Route("api/v1/painel")]
     [ApiController]
@@ -37,6 +37,16 @@ namespace PfsAPI.Controllers
                 return BadRequest(painel);
 
             return Ok(painel);
+        }
+
+        [HttpGet("user/{id}")]
+        public async Task<IActionResult> GetByUserId([FromRoute] int userId)
+        {
+            var painels = await _painelApp.GetByUserId(userId);
+            if (painels.PossuiErro)
+                return BadRequest(painels);
+
+            return Ok(painels);
         }
 
         [HttpPut]

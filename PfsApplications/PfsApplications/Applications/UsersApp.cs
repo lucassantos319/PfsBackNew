@@ -55,7 +55,7 @@ namespace PfsApplications.Applications
             return newUser;
         }
 
-        public async Task<Result<User>> GetUserById(int id)
+        public async Task<Result<User>> GetById(int id)
         {
             var user = await _repository.GetById(id);
             if ( user == null)

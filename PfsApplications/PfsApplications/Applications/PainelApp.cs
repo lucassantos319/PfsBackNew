@@ -28,7 +28,27 @@ namespace PfsApplications.Applications
             return null;
         }
 
+        public Task<Result<bool>> DeleteById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Result<Painel>> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Result<bool>> Update(PainelViewModel creditCard)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override async Task<Result<Painel>> Validate(Painel newPainel)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<Result<IEnumerable<Painel>>> IPainelApp.GetByUserId(int userId)
         {
             throw new NotImplementedException();
         }
